@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Force dark mode to be class-based only — prevents OS dark mode from rendering
+   white text on a white background (site is intentionally light-only) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Font token */
 @theme inline {
   --font-sans: var(--font-urbanist);
