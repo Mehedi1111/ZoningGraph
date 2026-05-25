@@ -24,15 +24,15 @@ export const metadata: Metadata = {
     description: 'The intelligence layer real estate has been missing.',
     type: 'website',
   },
+  icons: {
+    icon: '/zoniggraph logo icon.png',
+    apple: '/zoniggraph logo icon.png',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={urbanist.variable} suppressHydrationWarning>
-      <head>
-        {/* Prevent flash of unstyled content on theme load */}
-        <script dangerouslySetInnerHTML={{ __html: `(function(){var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}})();` }} />
-      </head>
+    <html lang="en" className={urbanist.variable}>
       <body className="font-sans antialiased">
         <Navbar />
         <main className="min-h-screen">{children}</main>

@@ -1,20 +1,8 @@
 import Link from 'next/link';
-
-function Mark() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <rect x="1" y="1" width="7.5" height="7.5" rx="1.5" stroke="#5b21b6" strokeWidth="1.5"/>
-      <rect x="11.5" y="11.5" width="7.5" height="7.5" rx="1.5" stroke="#5b21b6" strokeWidth="1.5"/>
-      <line x1="4.75" y1="8.5" x2="4.75" y2="11.5" stroke="#5b21b6" strokeWidth="1.5"/>
-      <line x1="15.25" y1="8.5" x2="15.25" y2="11.5" stroke="#5b21b6" strokeWidth="1.5"/>
-      <line x1="8.5" y1="4.75" x2="11.5" y2="4.75" stroke="#5b21b6" strokeWidth="1.5"/>
-      <line x1="8.5" y1="15.25" x2="11.5" y2="15.25" stroke="#5b21b6" strokeWidth="1.5"/>
-    </svg>
-  );
-}
+import Image from 'next/image';
 
 const COLS = [
-  { title: 'Product',  links: [{ href: '/platform', l: 'Platform' }, { href: '/intelligence', l: 'Intelligence' }, { href: '/use-cases', l: 'Use Cases' }] },
+  { title: 'Product',  links: [{ href: '/platform', l: 'Platform' }, { href: '/intelligence', l: 'Intelligence' }, { href: '/use-cases', l: 'Use Cases' }, { href: '/insights', l: 'Insights' }] },
   { title: 'Company',  links: [{ href: '/acquire',   l: 'Acquire Domain' }, { href: '/acquire', l: 'About' }, { href: '/acquire', l: 'Contact' }] },
   { title: 'Legal',    links: [{ href: '/acquire',   l: 'Privacy' }, { href: '/acquire', l: 'Terms' }] },
 ];
@@ -25,9 +13,14 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-5 py-14">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
           <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2 mb-3">
-              <Mark />
-              <span className="text-[14px] font-[600] text-zinc-900">ZoningGraph</span>
+            <div className="mb-3">
+              <Image
+                src="/zoniggraph logo colored.png"
+                alt="ZoningGraph"
+                height={24}
+                width={140}
+                className="h-6 w-auto object-contain"
+              />
             </div>
             <p className="text-[13px] text-zinc-500 leading-relaxed max-w-[200px]">
               Property intelligence for the enterprise.
