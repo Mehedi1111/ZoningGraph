@@ -1,0 +1,132 @@
+export const metadata = {
+  title: 'What a Zoning Data API Actually Needs to Do',
+  description: 'Parcel data is not zoning intelligence. Enterprise property platforms need structured, queryable zoning data—and most APIs fall dangerously short.',
+  date: '2026-05-23',
+  slug: 'zoning-data-api-enterprise-platforms',
+};
+
+# What a Zoning Data API Actually Needs to Do
+
+## TL;DR
+
+- The US PropTech market is valued at $24.73 billion in 2026 and growing at 18.5% annually. Data infrastructure is the fastest-growing layer.
+- Parcel data and zoning intelligence are different products. Conflating them creates underwriting errors and platform liability.
+- An enterprise-grade zoning data API must support structured dimensional standards, conditional use logic, overlay district handling, temporal versioning, and natural language querying.
+- No current major data provider fully meets this spec. That gap is the market.
+
+---
+
+## The Data Layer Problem That PropTech Has Ignored
+
+The PropTech market has scaled dramatically. At $24.73 billion in the US in 2026—growing to a projected $76.84 billion by 2034 at an 18.5% CAGR—the sector has attracted serious infrastructure investment in transactions, valuations, listings, and tenant management.
+
+What has not scaled: **zoning data**.
+
+Every property data platform in the market today aggregates parcel records, ownership history, transaction comps, and some version of demographic or market analytics. None of them delivers enterprise-grade zoning intelligence. The platforms that mention zoning typically provide a zoning classification field—a code like "R-2" or "C-B1"—with no structured interpretation of what that code means in practice.
+
+For a platform serving institutional buyers, that is not a feature gap. It is a liability.
+
+---
+
+## What Parcel Data Gives You (and What It Doesn't)
+
+| Data Type | What You Get | What You Don't Get |
+|-----------|-------------|-------------------|
+| Parcel record | APN, lot size, ownership, sale history | What can be built on the lot |
+| Zoning classification | The code (e.g., "MF-2") | What MF-2 permits in this jurisdiction |
+| Tax assessment | Assessed value, improvement breakdown | Development potential under current code |
+| Building permits | Permit type, date, valuation | Whether proposed use is by-right or requires review |
+| ATTOM / CoreLogic data | Rich owner and transaction history | Zoning dimensional standards, overlay districts |
+| CoStar data | Comparable lease and sale data (commercial) | Municipal zoning rules and entitlement pathways |
+
+The zoning column is uniformly blank. This is not because zoning data is unimportant—81% of CRE investors have identified data and technology as their top spending priority (Deloitte, 2024). It is because zoning data is genuinely hard to structure at scale, across 40,000+ jurisdictions, each publishing rules in a different format and on a different cadence.
+
+---
+
+## What an Enterprise Zoning API Must Actually Deliver
+
+An enterprise-grade zoning data API is not a lookup table for zone codes. It is a queryable intelligence layer that answers compound questions about real property. Here is the minimum spec:
+
+### 1. Structured Dimensional Standards
+
+For every zone in every jurisdiction covered, the API must return machine-readable values for:
+
+- **Floor area ratio (FAR)**: Maximum buildable square footage as a multiple of lot area
+- **Height limits**: In feet and stories, including any bonus provisions
+- **Setbacks**: Front, rear, and side yard minimums
+- **Lot coverage**: Maximum percentage of lot that can be covered by structure
+- **Minimum lot size**: For subdivision purposes
+- **Parking minimums and maximums**: Including any transit overlay exceptions
+
+These should be returned as typed fields—not free text extracted from a PDF.
+
+### 2. Permitted Use Logic
+
+A zone classification alone does not tell you what uses are permitted. The same "Commercial" zone in two adjacent cities may allow—or prohibit—retail, office, hotel, light industrial, or residential entirely differently. The API must:
+
+- Distinguish **by-right** uses (no discretionary review required) from **conditional** uses (subject to hearing and approval)
+- Flag **prohibited** uses explicitly
+- Return the **specific conditions** attached to conditional uses
+
+### 3. Overlay District Resolution
+
+Overlay districts modify base zoning for specific purposes—historic preservation, transit corridors, flood hazard, affordable housing requirements, design review. They are applied at the parcel level and are not reflected in base zone classifications.
+
+An enterprise API must:
+
+- Identify all overlay districts applicable to a given parcel
+- Return the specific modifications each overlay imposes on the base zone
+- Handle conflicts between multiple overlaying districts with a defined precedence rule
+
+### 4. Temporal Versioning
+
+Zoning changes. Municipal councils rezone parcels, update dimensional standards, and add or remove overlay districts on a rolling basis. An enterprise API must:
+
+- Return the **current** effective zoning at time of query
+- Provide **historical versions** of zoning rules for a given parcel (critical for non-conforming use analysis)
+- Track and expose **pending amendments** under consideration
+
+This temporal layer is particularly critical in the current environment, where state preemption laws are overriding local codes across more than a dozen states.
+
+### 5. Natural Language and Compound Queries
+
+The practical question enterprise users need to answer is almost never "what is the zone code for parcel X?" It is:
+
+- "Which parcels in this county can support 50+ unit multifamily by-right with no parking minimum?"
+- "What is the maximum FAR available on these 12 assets under current zoning?"
+- "Which properties in my portfolio are non-conforming under the 2023 zoning amendments?"
+
+Answering these questions requires the API to support **compound, multi-attribute queries** against structured zoning data—not just individual parcel lookups.
+
+---
+
+## The Build vs. Buy Calculation for Enterprise Platforms
+
+Some enterprise property platforms have attempted to build zoning data infrastructure internally. The economics rarely work:
+
+- **Coverage**: Getting to meaningful nationwide coverage requires integrating with 40,000+ jurisdictions, each with different data formats, update schedules, and access mechanisms
+- **Maintenance**: Zoning changes continuously. A coverage snapshot taken today is materially inaccurate within 6 to 12 months in active reform markets
+- **Interpretation**: Converting raw zoning text into structured, queryable data requires legal and planning expertise, not just engineering
+- **Reform tracking**: The current wave of state preemption laws creates a secondary layer of interpretation—when state law overrides local code, which rules apply to which parcels?
+
+The PropTech market's shift toward infrastructure consolidation reflects this reality. Platform companies increasingly buy data infrastructure rather than build it, because data maintenance is not a core competency and time-to-market with comprehensive coverage is not achievable at acceptable cost through internal development alone.
+
+---
+
+## Why This Market Exists Now
+
+Three forces converged to create the zoning data infrastructure gap:
+
+**Volume**: AI and data-driven underwriting have expanded the number of assets that enterprise teams evaluate. When a team underwrites 20 deals a year, manual zoning research is painful but manageable. When the same team evaluates 2,000 sites through automated screening, the manual approach breaks completely.
+
+**Reform**: The 2019–2025 wave of state zoning reform has materially changed zoning rules on millions of parcels. Any platform with stale pre-reform zoning data is actively misinforming users.
+
+**Liability**: As institutional buyers formalize their data governance requirements, platforms that return an uninterpreted zone code instead of actionable zoning intelligence face increasing scrutiny. The question "what does your zoning data actually tell us?" has become harder to deflect.
+
+The market for enterprise zoning intelligence infrastructure is not speculative. The demand exists. The data infrastructure does not yet.
+
+---
+
+*ZoningGraph Team*
+
+*ZoningGraph builds an AI-powered zoning intelligence layer—structured, queryable, and maintained in real time—for enterprise property platforms, institutional investors, and developers.*

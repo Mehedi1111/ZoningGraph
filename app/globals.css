@@ -1,26 +1,158 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Class-based dark mode — triggered by .dark on <html> */
+@variant dark (&:is(.dark *));
 
+/* Font token — inline keeps the CSS var reference intact */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-urbanist);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Color tokens — non-inline so utilities use var(), enabling runtime dark mode switching */
+@theme {
+  --color-accent:        #5b21b6;
+  --color-accent-hover:  #4c1d95;
+  --color-accent-subtle: #f5f3ff;
+  --color-accent-border: #ede9fe;
+  --color-accent-text:   #3730a3;
+
+  --color-ink:          #0f0f11;
+  --color-ink-2:        #3f3f46;
+  --color-ink-3:        #71717a;
+  --color-ink-4:        #a1a1aa;
+  --color-canvas:       #ffffff;
+  --color-wash:         #fafafa;
+  --color-border:       #e4e4e7;
+  --color-border-light: #f4f4f5;
+}
+
+/* ── Dark mode: override CSS variables ─────────── */
+.dark {
+  --color-accent:        #8b5cf6;
+  --color-accent-hover:  #7c3aed;
+  --color-accent-subtle: #1c0440;
+  --color-accent-border: #2e1065;
+  --color-accent-text:   #a78bfa;
+
+  --color-ink:          #fafafa;
+  --color-ink-2:        #e4e4e7;
+  --color-ink-3:        #a1a1aa;
+  --color-ink-4:        #71717a;
+  --color-canvas:       #09090b;
+  --color-wash:         #111113;
+  --color-border:       #3f3f46;
+  --color-border-light: #27272a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html.dark {
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ── Utility classes ────────────────────────── */
+.section-label {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-ink-3);
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.card:hover {
+  border-color: #d4d4d8;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+.dark .card {
+  background: #18181b;
+  border-color: #3f3f46;
+}
+.dark .card:hover {
+  border-color: #52525b;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* ── Dark mode: override hardcoded Tailwind zinc/white utilities ────────────
+   Specificity: html.dark + .class = [0,2,0] beats [0,1,0] for Tailwind utilities */
+
+/* Text */
+html.dark .text-zinc-900 { color: #fafafa; }
+html.dark .text-zinc-800 { color: #e4e4e7; }
+html.dark .text-zinc-700 { color: #d4d4d8; }
+html.dark .text-zinc-600 { color: #a1a1aa; }
+html.dark .text-zinc-500 { color: #a1a1aa; }
+html.dark .text-zinc-400 { color: #71717a; }
+html.dark .text-zinc-300 { color: #52525b; }
+html.dark .text-zinc-200 { color: #3f3f46; }
+
+/* Backgrounds */
+html.dark .bg-white    { background-color: #18181b; }
+html.dark .bg-zinc-50  { background-color: #111113; }
+html.dark .bg-zinc-100 { background-color: #27272a; }
+
+/* The zinc-900 sections (dark CTA, code blocks) stay dark but shift slightly */
+html.dark .bg-zinc-900 { background-color: #27272a; }
+html.dark .bg-zinc-800 { background-color: #3f3f46; }
+html.dark .bg-zinc-600 { background-color: #52525b; }
+
+/* Borders */
+html.dark .border-zinc-100 { border-color: #27272a; }
+html.dark .border-zinc-200 { border-color: #3f3f46; }
+html.dark .border-zinc-300 { border-color: #52525b; }
+
+/* White text stays white (no override needed) */
+/* White/10, White/8, White/6 opacity classes in dark code blocks — keep as-is */
+
+/* ── Insight prose — scoped to article pages ───── */
+.insight-prose {
+  color: var(--color-ink-2);
+  line-height: 1.8;
+}
+
+/* ── Animations ─────────────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+.marquee-track          { animation: marquee         var(--duration, 40s) linear infinite; }
+.marquee-track-reverse  { animation: marquee-reverse var(--duration, 40s) linear infinite; }
+.marquee-track:hover,
+.marquee-track-reverse:hover { animation-play-state: paused; }
+
+/* Fade-edge mask for marquees */
+.marquee-fade {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
 }

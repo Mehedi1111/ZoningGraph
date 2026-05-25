@@ -1,0 +1,105 @@
+export const metadata = {
+  title: 'Zoning Risk: The CRE Underwriting Blind Spot',
+  description: '88% of CRE investors are piloting AI, but most underwriting models still miss zoning risk. Here is what enterprise firms need to fix before the next deal.',
+  date: '2026-05-24',
+  slug: 'zoning-risk-cre-underwriting',
+};
+
+# Zoning Risk: The CRE Underwriting Blind Spot
+
+## TL;DR
+
+- 88% of CRE investors are already running AI pilots (JLL, 2024). Only 5% achieve all their program goals.
+- The gap between piloting AI and realizing value is almost always a data quality problem—not a model problem.
+- Zoning risk is systematically underrepresented in underwriting models because structured zoning data does not exist at scale.
+- Firms that solve the zoning data layer will underwrite faster, catch entitlement risk earlier, and deploy capital more precisely.
+
+---
+
+## The Underwriting Assumption Nobody Audits
+
+Every commercial real estate underwriting model includes a line item for entitlement risk. In practice, that line item is almost never derived from structured data about the actual zoning governing the asset. It is estimated—by an analyst, from memory or a PDF, in a compressed due diligence window.
+
+This is not a criticism of analysts. It is a structural problem. Structured, machine-readable zoning data does not exist at the scale enterprise underwriting requires. So firms use proxies: experienced judgment, local broker color, brief reviews of planning documents. These work until they don't.
+
+When a deal falls through because of a zoning issue that should have been caught in week one, the cost is not just the failed deal. It is the legal fees, the opportunity cost of the 30 to 60 days consumed, and the reputational friction with the capital partner who expected the deal to close.
+
+---
+
+## What the AI Adoption Data Actually Reveals
+
+The 2024 surveys from JLL and Deloitte make the AI adoption case clearly:
+
+| Metric | Stat | Source |
+|--------|------|--------|
+| CRE investors/owners/landlords piloting AI | 88% | JLL 2024 |
+| Corporate real estate occupiers running AI pilots | 92% | JLL 2024 |
+| Investors committing hard dollars to AI solutions | 72% | Deloitte 2024 |
+| Firms identifying data/technology as top spending priority | 81% | Deloitte 2024 |
+| Firms that achieved all AI program goals | 5% | JLL 2024 |
+| Firms still reliant on legacy technology | 60%+ | McKinsey 2024 |
+
+The headline number is 88%. The number that matters is 5%.
+
+Nearly every enterprise CRE firm is now allocating budget to AI. But the overwhelming majority have not achieved their intended outcomes—faster underwriting, better asset selection, reduced deal risk. McKinsey's analysis of the firms that do see real AI returns identifies a consistent pattern: they link AI investments directly to P&L impact and redesign workflows end-to-end rather than layering AI on top of existing processes.
+
+The most common failure mode is not a bad model. It is bad data going in.
+
+---
+
+## Where Zoning Risk Lives in the Underwriting Stack
+
+A standard CRE acquisition underwriting covers:
+
+- **Market analysis**: Supply and demand dynamics, comparable transactions, rent growth assumptions
+- **Financial modeling**: NOI projections, cap rate assumptions, exit scenarios
+- **Physical due diligence**: Structural condition, deferred maintenance, environmental
+- **Legal and title**: Encumbrances, easements, deed restrictions
+- **Regulatory and entitlement**: Zoning classification, permitted uses, variance history, entitlement pathway
+
+The first four categories have well-established data providers and workflows. The fifth is consistently the weakest link—not because firms don't care about it, but because the underlying data infrastructure does not exist to support rigorous systematic analysis.
+
+The result is a structural asymmetry: an analyst can pull a 10-year rent comps history from CoStar in minutes. The same analyst must spend 3 to 8 hours manually reading a zoning ordinance to understand whether a proposed use is permitted, what the FAR and height limits are, whether overlay districts apply, and what variance pathway exists if the current use doesn't conform.
+
+---
+
+## The Specific Risks That Get Missed
+
+When zoning analysis is done manually under time pressure, specific risk categories are systematically underweighted:
+
+**Non-conforming use risk.** A property operating under a use that was legal when established but is now non-conforming under the current code is exposed to loss of that use upon substantial renovation, damage, or change of control. This risk is not always disclosed by sellers and requires active investigation of the code history.
+
+**Overlay district exposure.** Overlay districts—historic preservation zones, flood overlays, transit corridors, affordable housing requirement zones—modify base zoning and are not always reflected in standard parcel records. A deal underwritten to base zoning assumptions without checking for applicable overlays may have materially different economics.
+
+**Entitlement pathway length.** Two parcels in the same zone may have very different paths to a building permit. One may allow by-right development; the other may require discretionary review, public hearings, and environmental analysis adding 12 to 36 months to the development timeline. Underwriting these two situations identically misprices risk.
+
+**Post-reform reclassification.** The recent wave of state zoning reforms (Oregon, California, Montana, Florida, Washington) has changed the permitted uses on millions of parcels. Properties underwritten under the old zoning may now have higher or different development potential—or new obligations—that are not reflected in their current valuations.
+
+---
+
+## What Systematic Zoning Intelligence Changes
+
+The underwriting teams that have integrated structured zoning data into their workflows report specific, measurable differences:
+
+- **Entitlement risk surfaces in week one**, not in week four during legal review
+- **Non-conforming use issues** are flagged before the LOI is signed, not after the deposit is hard
+- **Development potential** is calculated from actual code sections, not broker assumptions
+- **Portfolio-level screening** becomes possible—evaluating 500 or 5,000 assets against a specific zoning profile is a query, not a research project
+
+The firms achieving real AI ROI in real estate are not the ones with the most sophisticated models. They are the ones with the most structured inputs. Zoning is the largest unstructured input in the stack.
+
+---
+
+## Implications for Enterprise Platforms
+
+For enterprise platforms serving institutional investors, developers, or lenders, zoning intelligence is not a feature—it is foundational infrastructure. The platforms that wire structured zoning data into their underwriting and asset management workflows will be able to offer a quality of analysis that is structurally unavailable to competitors still working from PDFs and local broker calls.
+
+McKinsey estimates AI value potential in real estate at **$430 to 550 billion** across the full value chain. The zoning layer is the one piece of that value chain where no enterprise-grade data infrastructure currently exists.
+
+That gap is closing. The question for institutional buyers is whether they will build it, buy it, or fall behind the firms that did.
+
+---
+
+*ZoningGraph Team*
+
+*ZoningGraph is an AI-powered zoning intelligence platform that converts fragmented zoning codes, parcel histories, and land-use regulations into a unified knowledge graph for enterprise property platforms.*
